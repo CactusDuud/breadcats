@@ -36,6 +36,6 @@ public class Bullet : MonoBehaviour
 
     private void HitTarget()
     {
-        Destroy(gameObject);
+        Destroy(target.gameObject);
     }
 }

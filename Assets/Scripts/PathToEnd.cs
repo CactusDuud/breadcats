@@ -34,6 +34,7 @@ public class PathToEnd : MonoBehaviour
         if (waypointIndex >= Waypoints.points.Length - 1)
         {
             Destroy(gameObject);
+            GameManager.Instance.ReduceLives(10);
             return;
         }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public Transform creepParent;
-    public Transform creepPrefab;
+    public GameObject creepPrefab;
     public Transform spawnPoint;
 
     public float timeBetweenWaves = 10.0f;
