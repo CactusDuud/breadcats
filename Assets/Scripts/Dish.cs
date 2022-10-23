@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Dish : MonoBehaviour
+public class Dish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     private SpriteRenderer _sprite;
     private Color initColour;
@@ -21,25 +22,19 @@ public class Dish : MonoBehaviour
         );
     }
 
-    /// <summary>
-    /// OnMouseDown is called when the user has pressed the mouse button while
-    /// over the GUIElement or Collider.
-    /// </summary>
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (currentTower == null) {
+        if (currentTower == null && eventData.button == PointerEventData.InputButton.Left) {
             currentTower = (GameObject)GameManager.Instance.SpawnTower(transform);
         }
     }
 
-    /// <summary> Called when the mouse enters the GUIElement or Collider. </summary>
-    private void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
         _sprite.color = hoverColour;
     }
 
-    /// <summary> Called when the mouse is not any longer over the GUIElement or Collider. </summary>
-    private void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
         _sprite.color = initColour;
     }
