@@ -20,6 +20,8 @@ public class PathToEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.GameOver) return;
+        
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * walkSpeed * Time.deltaTime, Space.World);
 

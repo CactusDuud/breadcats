@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public Transform towerParent;
     public GameObject towerPrefab;
+    public Light2D globalLight;
 
     private void Awake() 
     { 
@@ -28,12 +31,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameOver) Application.Quit();
+        if (GameOver)
+        {
+            globalLight.intensity = 0.5f;
+            Application.Quit();
+        }
     }
 
     public void ReduceLives(int amount)
     {
         Lives -= amount;
+        Debug.Log($"{name}: Lost {amount} lives (now at {Lives})");
         if (Lives <= 0) GameOver = true;
     }
 

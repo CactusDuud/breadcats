@@ -40,6 +40,7 @@ public class TowerBehaviour : MonoBehaviour
     /// <summary> Update is called every frame, if the MonoBehaviour is enabled. </summary>
     private void Update()
     {
+        if (GameManager.Instance.GameOver) return;
         if (target == null) return;
 
         // Rotate graphic to face target
