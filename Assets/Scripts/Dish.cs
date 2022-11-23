@@ -24,9 +24,9 @@ public class Dish : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (currentTower == null && eventData.button == PointerEventData.InputButton.Left) {
-            currentTower = (GameObject)GameManager.Instance.SpawnTower(transform);
-        }
+        // if (currentTower == null && eventData.button == PointerEventData.InputButton.Left) {
+        //     currentTower = (GameObject)GameManager.Instance.SpawnTower(transform);
+        // }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

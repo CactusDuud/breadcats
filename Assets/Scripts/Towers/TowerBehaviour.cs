@@ -11,6 +11,8 @@ public class TowerBehaviour : MonoBehaviour
     public Transform graphic;
     public Transform target {get; private set;}
 
+    [SerializeField] private bool onDish = false;
+
     [SerializeField] private float fireRate = 2.0f;
     [SerializeField] private float fireCountdown = 0.0f;
     
@@ -42,6 +44,7 @@ public class TowerBehaviour : MonoBehaviour
     {
         if (GameManager.Instance.GameOver) return;
         if (target == null) return;
+        if (!onDish) return;
 
         // Rotate graphic to face target
         Vector2 dir = target.position - transform.position;
@@ -81,6 +84,32 @@ public class TowerBehaviour : MonoBehaviour
         if (bullet != null)
         {
             bullet.Seek(target);
+        }
+    }
+
+    /// <summary>
+    /// Sent when an incoming collider makes contact with this object's
+    /// collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Dish"))
+        {
+            onDish = true;
+        }
+    }
+
+    /// <summary>
+    /// Sent when a collider on another object stops touching this
+    /// object's collider (2D physics only).
+    /// </summary>
+    /// <param name="other">The Collision2D data associated with this collision.</param>
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Dish"))
+        {
+            onDish = false;
         }
     }
 }
